@@ -14,6 +14,8 @@ import androidx.annotation.ColorLong
 import androidx.core.content.ContextCompat
 import com.google.gson.GsonBuilder
 import com.robinhood.spark.SparkView
+import com.robinhood.ticker.TickerUtils
+import com.robinhood.ticker.TickerView
 import org.angmarch.views.NiceSpinner
 import retrofit2.Call
 import retrofit2.Callback
@@ -151,8 +153,10 @@ class MainActivity : AppCompatActivity() {
         }
         @ColorInt val colorInt= ContextCompat.getColor(this, colorRes)
         sparkView.lineColor=colorInt
-        val tvMetricLabel = findViewById<TextView>(R.id.tvMetricLabel)
-        tvMetricLabel.setTextColor(colorInt)
+        /*val tvMetricLabel = findViewById<TextView>(R.id.tvMetricLabel)
+        tvMetricLabel.setTextColor(colorInt)*/
+        val tickerView = findViewById<TickerView>(R.id.tickerView)
+        tickerView.textColor=colorInt
         //update metric on the adapter
         adapter.metric=metric
         adapter.notifyDataSetChanged()
@@ -182,8 +186,11 @@ class MainActivity : AppCompatActivity() {
             Metric.POSTIVE->covidData.positiveIncrease
             Metric.DEATH->covidData.deathIncrease
         }
-        val tvMetricLabel = findViewById<TextView>(R.id.tvMetricLabel)
-        tvMetricLabel.text= NumberFormat.getInstance().format(numCases)
+        val tickerView = findViewById<TickerView>(R.id.tickerView)
+        tickerView.setCharacterLists(TickerUtils.provideNumberList())
+        tickerView.setText(NumberFormat.getInstance().format(numCases),true)
+      /*  val tvMetricLabel = findViewById<TextView>(R.id.tvMetricLabel)
+        tvMetricLabel.text= NumberFormat.getInstance().format(numCases)*/
         val outputDataFormat=SimpleDateFormat("MMM dd, yyyy", Locale.US)
         val tvDateLabel = findViewById<TextView>(R.id.tvDateLabel)
         tvDateLabel.text=outputDataFormat.format(covidData.dateChecked)

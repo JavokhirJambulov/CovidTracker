@@ -110,8 +110,8 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:text="May 30, 2020" />
 
-    <TextView
-        android:id="@+id/tvMetricLabel"
+    <com.robinhood.ticker.TickerView
+        android:id="@+id/tickerView"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:gravity="center"
