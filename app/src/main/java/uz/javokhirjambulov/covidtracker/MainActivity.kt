@@ -25,6 +25,7 @@ import java.util.*
 private const val BASE_URL="https://api.covidtracking.com/v1/"
 private const val TAG = "MainActivity"
 private const val ALL_SATES="All (Nationwide)"
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var sparkView: SparkView
